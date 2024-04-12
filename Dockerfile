@@ -2,7 +2,10 @@ FROM ubuntu:16.04
 WORKDIR /root
 # Install required packages
 RUN apt update && \
-    apt install -y curl git gcc make libxaw7-dev xfonts-utils python-pip ipython python-colorama
+    apt install -y curl git gcc make libxaw7-dev xfonts-utils python-pip ipython python-colorama locales
+# Generate and set en_US.UTF-8 locale
+RUN locale-gen en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
 # Download birp, py3270 and x3270 source files
 RUN git clone https://github.com/sensepost/birp && \
     git clone https://github.com/singe/py3270 && \
