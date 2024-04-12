@@ -76,6 +76,18 @@ The key handling functionality I use is my own custom getch implementation. It i
 
 I found py3270 pretty rough and ended up wrapping some of it. I've provided this as a separate wrapper that you can use in your own programs.
 
+Docker image
+--------------
+
+Since this project is several years old it may cause problems trying to run it, such as compiling an old version of x3270 or using python2. A Dockerfile has been created with all the stepsneeded to run birp. The image can be created with the following command:
+```
+docker build -t birp .
+```
+In order to run this image X11 support is needed, so Docker needs to be run with several flags (check out [this medium article](https://l10nn.medium.com/running-x11-applications-with-docker-75133178d090)):
+```
+docker run -v /tmp/.X11-unix:/tmp/.X11-unix -v $HOME/.Xauthority:/root/.Xauthority -h $HOSTNAME -e DISPLAY=$DISPLAY -it birp
+```
+
 Shouts
 ------
 
